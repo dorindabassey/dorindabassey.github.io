@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="quilt, devtool, add support for elfutils debuginfod in yocto">
+  <meta name="author" content="https://dorindabassey.github.io/post.html">
+  <meta property="og:title" content="quilt, devtool, add support for elfutils debuginfod in yocto">
+  <meta property="og:description" content="https://dorindabassey.github.io/post.html">
+
+  <title>Story Telling</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">My Story</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Stories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/post3.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Yocto Project Build tools</h1>
+            <h2 class="subheading">5 weeks so far on my journey @ Outreachy...</h2>
+            <span class="meta">Posted by
+              <a href="#">Dorinda Bassey</a>
+              on January 2, 2021</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>Yocto Project Build tools</p>
+          
+          <p>In this article, we’ll be talking about some Yocto build tools I've used so far working on my task "add support for elfutils debuginfod" in the Yocto project. In my previous post <a class="link" href="https://dorindabassey.github.io/post2.html", style="color:blue;">here</a>, I passively made mention of some of the tools and now in today’s article we are going to delve right into explaining these tools and I'll also discuss what my internship task is about.</p>
+          
+          <p>Where do we start? Okay....<h3>A proper Introduction to The Yocto project</h3></p>
+
+          <a href="#">
+            <img class="img-fluid" src="img/yocto.jpg" alt="">
+          </a>
+          
+          <p><blockquote class="blockquote">“The Yocto Project (YP) is an open source collaboration project that helps developers create custom Linux-based systems regardless of the hardware architecture. The project provides a flexible set of tools and a space where embedded developers worldwide can share technologies, software stacks, configurations, and best practices that can be used to create tailored Linux images for embedded and IOT devices, or anywhere a customized Linux OS is needed. “</blockquote> yeah, I just just quoted that word for word from the the company’s page because there was no better way to describe it but in summary The Yocto project helps you create customized Linux images, and software. to know more about Yocto project check the overview and documentations <a class="link" href="https://www.yoctoproject.org/", style="color:blue;">here</a> </p>
+          <h3>devtool</h3>
+          <p>One of the tools Yocto provides is a command line tool “devtool”.</p>
+          <p>The devtool command line tool enables you to add new recipes software to be built, modify source code of a recipe, or even upgrade recipes. Lets dig into the steps used in devtool to customize a recipe.</p>
+          <p>1) Assuming you have built an image according to the documentation <a class="link" href="https://docs.yoctoproject.org/", style="color:blue;">here</a></p>
+          <p>2) Run <a style="color:purple">‘devtool modify &lt;recipename&gt;’</a> command, in mycase it was ‘devtool modify elfutils’. What this command does is that it fetches the sources and unpacks them into <a style="color:purple">/build/workspace/sources/&lt;recipename&gt;</a> directory.</p>
+          <p>3) cd into your source code directory and make the required changes in your code, note that these changes are being made in your vi editor.</p>
+          <p>4) After the changes are being made and you’re okay with the changes, in your source folder commit the changes.</p>
+          <p>5) Run <a style="color:purple">‘devtool update-recipe &lt;recipename&gt;’</a> command to update the existing recipe and create a patch of the changes you made in your layer, or run <a style="color:purple">‘devtool update-recipe &lt;recipename&gt; -a &lt;path to your layer&gt;’</a> command to create a bbappend and patch of the changes you made.</p>
+          <p>6) Finish your work with the recipe using the command <a style="color:purple">‘devtool finish &lt;recipename&gt;’</a> note you must have staged and committed your patches within the local git repository before you use the <a style="color:purple">‘devtool finish’</a> command.</p>
+          <p>7) You can now delete the <a style="color:purple">/build/workspace/sources/&lt;recipename&gt;</a> directory folder.</p>
+
+          <p>You can read more about using devtool in Yocto here <a class="link" href="https://docs.yoctoproject.org/sdk-manual/extensible.html#using-devtool-in-your-sdk-workflow", style="color:blue;">using-devtool-in-your-sdk-workflow</a></p>
+          <h3>Quilt</h3>
+          <p>you know one can also apply patches in Yocto using ‘quilt’ tool, although that's an old school way of applying patches to recipes layer. below are Steps using quilt to customize a recipe.</p>
+          <p>1) Again assuming you have built an image according to the documentation <a class="link" href="https://docs.yoctoproject.org/", style="color:blue;">here</a></p>
+          <p>2) Find the recipe you want to modify and add a SRC_URI for the patch file, like this below in the recipe.<a style="color:purple">SRC_URI += "file://&lt;name&gt;.patch"</a></p>
+          <p>3) If a folder named "files" in the same folder of recipe doesn’t already exist create one.</p>
+          <p>4) Create a blank file with the same name given in the recipe manually or using command line as such; <br><a style="color:purple">touch files/&lt;file-name&gt;.patch</a></p>
+          <p>5) Run the command: <a style="color:purple">‘bitbake &lt;recipe&gt; -c devshell’</a> this will open up the quilt terminal.</p>
+          <p>6) Do "quilt top" and verify if the patch file is reflected there.<br><a style="color:purple"># quilt top <br>patches/&lt;file-name&gt;.patch</a><br>if it’s not reflected, you might have to use quilt pop and quilt push to get the specific patch file you want to be reflected. Run quilt series to view the stack of files, then you’ll find where your file is being stacked. To know more about quilt commands check <a class="link" href="https://raphaelhertzog.com/2012/08/08/how-to-use-quilt-to-manage-patches-in-debian-packages/", style="color:blue;">this</a> out</p>
+          <p>7) Run <a style="color:purple">quilt add "filename which you need to modify"</a> (If multiple files are there, then add all those) <br>eg: <a style="color:purple">quilt add configure.ac README.txt</a></p>
+          <p>8) Make necessary modifications required for these files, note that these changes are being made in your vi editor.</p>
+          <p>9) After the changes are being made and you’re okay with the changes, in your source folder commit the changes.</p>
+          <p>10) Do <a style="color:purple">‘quilt refresh’</a></p>
+          <p>11) Check if your modifications are reflected in the patch file.<br> <a style="color:purple">vi patches/&lt;name&gt;.patch</a></p>
+          <p>12) Then replace this patch file with original one in files folder.</p>
+          <p>13) Exit, clean and build.</p>
+          <p>closing thoughts - I had initially modified an existing recipe using quilt but I realized that using devtool was much more easier, in subsequent blogs I will talk about other tools used in The Yocto Project.</p>
+          <p>Where are we now?...<br>About my Internship task – <h3>add support for elfutils debuginfod to the Yocto Project.</h3><br>I’ll try my best to explain this the best way I can. <br>Some introduction first – debuginfo files are notorious for taking up large amounts of space and the size of a debuginfo file could be 5 to 15 times that of the corresponding executable. And because bugs are inevitable, developers need quick and easy access to the artifacts that debuging tools like GDB and Systemtap depends on, but most times these resources are not readily available. Hence debuginfod a simple HTTP server that serves debuginfo to debugger-like tools. debuginfod from elfutils 0.178 onwards is a way to distribute debuginfo files, you can find more information <a class="link" href="https://sourceware.org/elfutils/Debuginfod.html", style="color:blue;">here</a></p>
+          <p>So am being tasked to add support for elfutils debuginfod to Yocto this way <br>1) Enable debuginfod in elfutils.  This should be a PACKAGECONFIG, and the build needs some extra dependencies (libmicrohttpd curl sqlite3 libarchive).  Initially disabled by default. <br>2) Add support for ipkg to the debuginfod scanner. 0.178 only supports RPM but the next release (and git master) can also scan .debs, and as ipkgs are binary-compatible with dpkg then this is a trivial addition to the filename matching.<br>3) Verify that running debuginfod manually over $DEPLOY_DIR and setting DEBUGINFOD_URLS correctly works. Test case: debuginfod-find source hexcode /bin/bash. <br>4) Determine final integration. Straw man proposal: a class that turns on debuginfod for elfutils and sets DEBUGINFOD_URLS in the image, and a script that runs the elfutils-native debuginfod on DEPLOY_DIR.</p>
+          <p>To those who read this article to the end, I hope a thing or two was helpful to you here, and i am also extending my warmest hug and appreciation to you.</p>
+
+
+
+          <!--<p>Placeholder text by
+            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
+            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>-->
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/BasseyDorinda?s=09">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/dorindabassey">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
