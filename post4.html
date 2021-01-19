@@ -5,12 +5,12 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="About Dorinda Bassey">
+  <meta name="description" content="half way through Outreachy, add support for elfutils debuginfod in yocto">
   <meta name="author" content="https://dorindabassey.github.io/post.html">
-  <meta property="og:title" content="about Dorinda Bassey">
+  <meta property="og:title" content="half way through Outreachy, add support for elfutils debuginfod in yocto">
   <meta property="og:description" content="https://dorindabassey.github.io/post.html">
 
-  <title>My Story Telling</title>
+  <title>Story Telling</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-  <!-- Custom styles for template -->
+  <!-- Custom styles for this template -->
   <link href="css/clean-blog.min.css" rel="stylesheet">
 
 </head>
@@ -55,88 +55,51 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/post4.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>My Blog</h1>
-            <span class="subheading">A Documetation of  my Experience as an Outreachy Intern</span>
+          <div class="post-heading">
+            <h1>Half way through Outreachy @ The Yocto Project</h1>
+            <h2 class="subheading">So on this week’s episode of my journey as an Outreachy intern – Modifying Expectations...</h2>
+            <span class="meta">Posted by
+              <a href="#">Dorinda Bassey</a>
+              on January 18, 2021</span>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Hello World
-            </h2>
-            <h3 class="post-subtitle">
-              you can call me Dorinda. “I am an Outreachy Intern”.
-            </h3>
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>Half way through Outreachy @ The Yocto Project</p>
+          
+          <p>So on this week’s episode of my journey as an Outreachy intern – Modifying Expectations, working on my task “add support for elfutils debuginfod to The Yocto Project” has been great. However, I am tempted to drop a bunch of code and just explain what it does but I must refrain from such lacadaisical attitude which might have stem from lack of what to write my audience.</p>
+
+          <a href="#">
+            <img class="img-fluid" src="img/outreach.jpg" alt="">
           </a>
-          <p class="post-meta">Posted by
-            <a href="#">Dorinda Bassey</a>
-            on December 8, 2020</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post2.html">
-            <h2 class="post-title">
-              Everybody Struggles!
-            </h2>
-            <h3 class="post-subtitle">
-              Nobody is perfect!
-              It's alright to seek help :)
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Dorinda Bassey</a>
-            on December 21, 2020</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post3.html">
-            <h2 class="post-title">
-              Yocto Project Build tools
-            </h2>
-            <h3 class="post-subtitle">
-              5 weeks so far on my journey @ Outreachy...
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Dorinda Bassey</a>
-            on January 2, 2021</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post4.html">
-            <h2 class="post-title">
-              Half way through Outreachy @ The Yocto Project
-            </h2>
-            <h3 class="post-subtitle">
-              So on this week’s episode of my journey as an Outreachy intern – Modifying Expectations..
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Dorinda Bassey</a>
-            on January 18, 2021</p>
-        </div>
-        <hr>
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+          <p>So far on my internship, I’ve been able to accomplish more than half of my project task with great support from my mentor Ross, but during the first half of my internship, a particular task actually took longer than expected to achieve;</p>
+          <p>After I had added a patch to enable debuginfod for elfutils recipe in The Yocto Project, once the debuginfod was enabled the build needed some extra dependencies (libmicrohttpd, curl, sqlite3, libarchive) to run debuginfod which was initially disabled by default. Next  step I took on my project was to add support for ipkg to the debuginfod scanner, however debuginfod scanner 0.181 only supported scanning .rpm and .deb files, but as ipkgs are binary-compatible with dpkg it was easy to add support for debuginfod scanner to scan .ipk files. Now I was expected to verify that running debuginfod manually over $DEPLOY_DIR and setting DEBUGINFOD_URLS works, this task in particular has been challenging, such that I haven’t been able to download the symbols from my local server, although the server has been implemented.</p>
+          
+          <p>One problem I might suspect is that since Ubuntu as an organization is not yet operating a debuginfod server, it might be the reason why my distro Ubuntu18.04 is not able to download the symbols, so i was thinking of building a Yocto image in a fedora docker container and checking if this problem is reproducible, hopefully this should be figured out soon.</p>
+          
+          <p>In regards to my internship dates, I don’t think my goals for this project need to be modified as I believe I would finish my internship task in due time, also through out my internship, i’ve had time to look into the Yocto Project and make some contributions, though I haven’t submitted any yet. Hopefully It should be done this week.</p>
+
+
+
+          <!--<p>Placeholder text by
+            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
+            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>-->
         </div>
       </div>
     </div>
-  </div>
+  </article>
 
   <hr>
 
