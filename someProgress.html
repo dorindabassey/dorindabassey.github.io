@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="some progress @ Outreachy, add support for elfutils debuginfod in yocto">
+  <meta name="author" content="https://dorindabassey.github.io/someProgress.html">
+  <meta property="og:title" content="some progress @ Outreachy, add support for elfutils debuginfod in yocto">
+  <meta property="og:description" content="https://dorindabassey.github.io/someProgress.html">
+
+  <title>Story Telling</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">My Story</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Stories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/debuginfod.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Some Progress!</h1>
+            <h2 class="subheading">I have some good news this week - PROGRESS!</h2>
+            <span class="meta">Posted by
+              <a href="#">Dorinda Bassey</a>
+              on February 1st, 2021</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>Some Progress!</p>
+          
+          <p>Remember how in my earlier post <a class="link" href="https://dorindabassey.github.io/post4.html", style="color:blue;">here</a>, I complained about a certain task I was stuck on, well the rubber duck programming method worked.</p>
+
+          <a href="#">
+            <img class="img-fluid" src="img/debuginfo_2x.jpg" alt="">
+          </a>
+          <p>I was expected to verify that running debuginfod manually and setting DEBUGINFOD_URLS works, but when I tried to test the debuginfod server I setup by fetching debuginfo symbols for some Yocto binaries built with an image in Yocto, I was getting "server query failed: no such file or directory" meaning that the debuginfo symbols weren't on the server that I was running. I kept wondering what could be the problem, only for me to find out with help from the elfutils community that while I was running my local debuginfod server, I set the server to fetch symbols of .ipk binaries whereas I was searching for symbols of .rpm binaries and vice-versa I was doing same for .ipk files such that; when i set the server to run .rpm binaries, I go ahead to search the server for .ipk binaries. This was me confusing myself and running in cycles, unknown to me that I was looking up the right binaries on the wrong server. This was clearly an oversight on my part and it did cost me a great amount of wasted time, however I've learned from my mistakes, and now I completely understand the concept of implementing debuginfod.</p>
+          
+          <p>I am excited about this week, I'll tell you the whys, first reason which you just recently read a minute ago, second reason is that i just learned that a new version of elfutils - elfutils 0.183 will be released next week, and one of the contributions I made with the help of my mentor Ross has been merged pending next week release. trivial the patch might be but it did make a great deal to me that I was part of a community contributing to the next release of elfutils software.</p>
+          
+          <p>Yes, i saved the most interesting part of my week for the last.</p>
+          <p>This past week, I've been making some mini contributions to The Yocto Project, and the community members have been very helpful and resourceful, I must say that this past week I've learnt a great deal about The Yocto Project, more about git navigation and open source contribution, at least I can proudly say I have overcome my fear of git rebasing, squashing, and splitting commits.</p>
+
+          <p>That's all for now, although writing this piece gave me new ideas, so I have a list of upcoming blog posts. I might as well highlight them now lest I forget :)</p>
+          <p>- How to setup a debuginfod server and fetch debug symbols for a Yocto build system. perks(this would save you some space as debuginfo resources are known to be 3 to 5 times larger than your executable)</p>
+          <p>- My Career goals and opportunities. (I'm already getting the jitters)</p>
+          <p>- I wrote about how to change Linux kernel version, it's about time i make a post on it. Well now that i have a better grasp of the Yocto Project, embarrassing to say but during my initial contribution stage on Outreachy, I remember trying to fix a bug which was about "writing how to change kernel version for a Yocto Image", and in my appalling naïvety I wrote about how to change Linux kernel version. Looking back now I can't help laughing at myself.</p>
+          <p>Thank you for stopping by, If you enjoyed this post expect more then.</p>
+
+
+          <!--<p>Placeholder text by
+            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
+            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>-->
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/BasseyDorinda?s=09">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/dorindabassey">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
