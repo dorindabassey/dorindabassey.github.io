@@ -5,10 +5,10 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="some progress @ Outreachy, add support for elfutils debuginfod in yocto">
+  <meta name="description" content="Career Goals, Outreachy Intern">
   <meta name="author" content="https://dorindabassey.github.io/someProgress.html">
-  <meta property="og:title" content="some progress @ Outreachy, add support for elfutils debuginfod in yocto">
-  <meta property="og:description" content="https://dorindabassey.github.io/someProgress.html">
+  <meta property="og:title" content="Career Goals, Outreachy Intern">
+  <meta property="og:description" content="https://dorindabassey.github.io/CareerGoals.html">
 
   <title>Story Telling</title>
 
@@ -55,17 +55,17 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/debuginfod.jpg')">
+  <header class="masthead" style="background-image: url('img/career.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>Some Progress!</h1>
-            <h2 class="subheading">I have some good news this week - PROGRESS!</h2>
+            <h1>Career Goals!</h1>
+            <h2 class="subheading">It's been long overdue, Let's have that talk now.</h2>
             <span class="meta">Posted by
               <a href="#">Dorinda Bassey</a>
-              on February 1st, 2021</span>
+              on February 10th, 2021</span>
           </div>
         </div>
       </div>
@@ -77,25 +77,23 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Some Progress!</p>
+          <p>This piece has been long overdue.</p>
           
-          <p>Remember how in my earlier post <a class="link" href="https://dorindabassey.github.io/post4.html", style="color:blue;">here</a>, I complained about a certain task I was stuck on, well the rubber duck programming method worked.</p>
+          <p>Truth be told I've avoided this topic until now, been thinking hard about what direction I want to accelerate my career in. Since I realized talking about my future and career goals is inevitable, you might as well hear it :).</p>
+          
+          <p>I have enjoyed this Outreachy Internship more importantly the knowledge I've gained at The Yocto Project and the learning processes involved. I want to continue on this Internship but as the saying goes <blockquote class="blockquote">"One can choose to go back toward safety or forward toward growth. Growth must be chosen again and again; fear must be overcome again and again." - Abraham Maslow".</blockquote> Being on this Outreachy Internship has exposed me to real life challenging work experience and scenarios, but at the end of this Internship journey, I'll be taking another leap.</p>
+          
+          <p><b>The Leap</b><br>I might have a small bit of doubt about myself and my readiness for a full time career in software development and embedded systems as a whole, but the knowledge and experience I've gained at The Yocto Project and in general Embedded systems will betray my doubt. This doubt that comes as "Impostor Syndrome" which I am told a greater percentage of people in the tech industry experience, a bit comforting to know.</p>
 
+          <p>Well initially, before i embarked on this internship journey I had a knack for embedded systems, mostly revolving around programming microcontrollers and IOT, although I had no idea about the Yocto project and Linux embedded systems. Now my eyes has been opened to many possibilities with the Yocto Project and Embedded systems that i think after finishing my task for this internship I'll dig more, can't wait to get my hands on some raspberrypi and build some images. Nonetheless the next feasible thing for me to do is to keep building my skill set around embedded systems and try to gain more experience on open source related projects. Be that as it may, I would keep contributing to the Yocto Project as the community and my mentor has helped me real good in understanding the Yocto Project plus this would make a great influence on my growth process.</p>
           <a href="#">
-            <img class="img-fluid" src="img/debuginfo_2x.jpg" alt="">
+            <img class="img-fluid" src="img/future.jpg" alt="">
           </a>
-          <p>I was expected to verify that running debuginfod manually and setting DEBUGINFOD_URLS works, but when I tried to test the debuginfod server I setup by fetching debuginfo symbols for some Yocto binaries built with an image in Yocto, I was getting "server query failed: no such file or directory" meaning that the debuginfo symbols weren't on the server that I was running. I kept wondering what could be the problem, only for me to find out with help from the elfutils community that while I was running my local debuginfod server, I set the server to fetch symbols of .ipk binaries whereas I was searching for symbols of .rpm binaries and vice-versa I was doing same for .ipk files such that; when i set the server to run .rpm binaries, I go ahead to search the server for .ipk binaries. This was me confusing myself and running in cycles, unknown to me that I was looking up the right binaries on the wrong server. This was clearly an oversight on my part and it did cost me a great amount of wasted time, however I've learned from my mistakes, and now I completely understand the concept of implementing debuginfod.</p>
           
-          <p>I am excited about this week, I'll tell you the whys, first reason which you just recently read a minute ago, second reason is that i just learned that a new version of elfutils - elfutils 0.183 will be released next week, and one of the contributions I made with the help of my mentor Ross has been merged pending next week release. trivial the patch might be but it did make a great deal to me that I was part of a community contributing to the next release of elfutils software.</p>
+          <p><b>A random thought flying around:</b> "Dorinda, taking a master degree in Software Engineering isn't a bad idea."<br><b>Me:</b> "yeah I couldn't agree more :)"<br><b>Random thought:</b> "when is this going to happen?"<br><b>Me:</b> "Relax man, We'll know when the time is right."<br><b>Random Thought:</b> now that you're almost done achieving your first term goal as stated earlier on your resume - "my short term goal is to get an internship in an organization that is performance driven and progressive." let's set another goal.<br><b>Me:</b> "yeah man! so on point. While gaining more experience contributing to open source projects of related interest, I'll keep an eye out for Job opportunities where I can be of great addition and help with my skills."</p>
           
-          <p>Yes, i saved the most interesting part of my week for the last.</p>
-          <p>This past week, I've been making some mini contributions to The Yocto Project, and the community members have been very helpful and resourceful, I must say that this past week I've learnt a great deal about The Yocto Project, more about git navigation and open source contribution, at least I can proudly say I have overcome my fear of git rebasing, squashing, and splitting commits.</p>
-
-          <p>That's all for now, although writing this piece gave me new ideas, so I have a list of upcoming blog posts. I might as well highlight them now lest I forget :)</p>
-          <p>- How to setup a debuginfod server and fetch debug symbols for a Yocto build system. perks(this would save you some space as debuginfo resources are known to be 3 to 5 times larger than your executable)</p>
-          <p>- My Career goals and opportunities. (I'm already getting the jitters)</p>
-          <p>- I wrote about how to change Linux kernel version, it's about time i make a post on it. Well now that i have a better grasp of the Yocto Project, embarrassing to say but during my initial contribution stage on Outreachy, I remember trying to fix a bug which was about "writing how to change kernel version for a Yocto Image", and in my appalling naïvety I wrote about how to change Linux kernel version. Looking back now I can't help laughing at myself.</p>
-          <p>Thank you for stopping by, If you enjoyed this post expect more then.</p>
+          <p><b>A list of interest:</b><br><b>-</b>Linux Embedded systems and Embedded systems in general.<br><b>-</b>The workflow around Building Operating System Images.<br><b>-</b>Machine Learning</p>
+          <p>Thanks for stopping by, however I am open to suggestions and opportunities from you so I made sure to add a comment section below, although github static pages doesn't have a comment box feature, I had to find a workaround. feel free to leave a comment thanks.</p>
 
 
           <!--<p>Placeholder text by
