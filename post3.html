@@ -24,7 +24,21 @@
   <link href="css/clean-blog.min.css" rel="stylesheet">
 
 </head>
+<style>
+code {
+    overflow: auto;
+    clear: both;
+    word-wrap: normal;
+    display: block;
+    line-height: 1.5em;
+    background-color: rgba(0,0,0,.08);
+    padding: 4px;
+    border-radius: 7px;
+    margin: 0 1px;
+    color: black;
+}
 
+</style>
 <body>
 
   <!-- Navigation -->
@@ -41,7 +55,7 @@
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="https://drive.google.com/file/d/1MzNhLHY29iv1ZwIxZyeNY8rB0cZ--In_/view?usp=sharing">Resume</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="post.html">Stories</a>
@@ -92,27 +106,27 @@
           <p>One of the tools Yocto provides is a command line tool “devtool”.</p>
           <p>The devtool command line tool enables you to add new recipes software to be built, modify source code of a recipe, or even upgrade recipes. Lets dig into the steps used in devtool to customize a recipe.</p>
           <p>1) Assuming you have built an image according to the documentation <a class="link" href="https://docs.yoctoproject.org/", style="color:blue;">here</a></p>
-          <p>2) Run <a style="color:purple">‘devtool modify &lt;recipename&gt;’</a> command, in mycase it was ‘devtool modify elfutils’. What this command does is that it fetches the sources and unpacks them into <a style="color:purple">/build/workspace/sources/&lt;recipename&gt;</a> directory.</p>
+          <p>2) Run the command <code>devtool modify &lt;recipename&gt;</code> in mycase it was <code>devtool modify elfutils</code> What this command does is that it fetches the sources and unpacks them into <a style="color:purple">/build/workspace/sources/&lt;recipename&gt;</a> directory.</p>
           <p>3) cd into your source code directory and make the required changes in your code, note that these changes are being made in your vi editor.</p>
           <p>4) After the changes are being made and you’re okay with the changes, in your source folder commit the changes.</p>
-          <p>5) Run <a style="color:purple">‘devtool update-recipe &lt;recipename&gt;’</a> command to update the existing recipe and create a patch of the changes you made in your layer, or run <a style="color:purple">‘devtool update-recipe &lt;recipename&gt; -a &lt;path to your layer&gt;’</a> command to create a bbappend and patch of the changes you made.</p>
-          <p>6) Finish your work with the recipe using the command <a style="color:purple">‘devtool finish &lt;recipename&gt;’</a> note you must have staged and committed your patches within the local git repository before you use the <a style="color:purple">‘devtool finish’</a> command.</p>
+          <p>5) Run the command <code>devtool update-recipe &lt;recipename&gt;</code> command to update the existing recipe and create a patch of the changes you made in your layer, or run the command <code>devtool update-recipe &lt;recipename&gt; -a &lt;path to your layer&gt;’</code> to create a bbappend and patch of the changes you made.</p>
+          <p>6) Finish your work with the recipe using the command <code>devtool finish &lt;recipename&gt;’</code> Note you must have staged and committed your patches within the local git repository before you use the <code>devtool finish</code> command.</p>
           <p>7) You can now delete the <a style="color:purple">/build/workspace/sources/&lt;recipename&gt;</a> directory folder.</p>
 
           <p>You can read more about using devtool in Yocto here <a class="link" href="https://docs.yoctoproject.org/sdk-manual/extensible.html#using-devtool-in-your-sdk-workflow", style="color:blue;">using-devtool-in-your-sdk-workflow</a></p>
           <h3>Quilt</h3>
           <p>you know one can also apply patches in Yocto using ‘quilt’ tool, although that's an old school way of applying patches to recipes layer. below are Steps using quilt to customize a recipe.</p>
           <p>1) Again assuming you have built an image according to the documentation <a class="link" href="https://docs.yoctoproject.org/", style="color:blue;">here</a></p>
-          <p>2) Find the recipe you want to modify and add a SRC_URI for the patch file, like this below in the recipe.<a style="color:purple">SRC_URI += "file://&lt;name&gt;.patch"</a></p>
+          <p>2) Find the recipe you want to modify and add a SRC_URI for the patch file, like this below in the recipe.<code>SRC_URI += "file://&lt;name&gt;.patch"</code></p>
           <p>3) If a folder named "files" in the same folder of recipe doesn’t already exist create one.</p>
-          <p>4) Create a blank file with the same name given in the recipe manually or using command line as such; <br><a style="color:purple">touch files/&lt;file-name&gt;.patch</a></p>
-          <p>5) Run the command: <a style="color:purple">‘bitbake &lt;recipe&gt; -c devshell’</a> this will open up the quilt terminal.</p>
-          <p>6) Do "quilt top" and verify if the patch file is reflected there.<br><a style="color:purple"># quilt top <br>patches/&lt;file-name&gt;.patch</a><br>if it’s not reflected, you might have to use quilt pop and quilt push to get the specific patch file you want to be reflected. Run quilt series to view the stack of files, then you’ll find where your file is being stacked. To know more about quilt commands check <a class="link" href="https://raphaelhertzog.com/2012/08/08/how-to-use-quilt-to-manage-patches-in-debian-packages/", style="color:blue;">this</a> out</p>
-          <p>7) Run <a style="color:purple">quilt add "filename which you need to modify"</a> (If multiple files are there, then add all those) <br>eg: <a style="color:purple">quilt add configure.ac README.txt</a></p>
+          <p>4) Create a blank file with the same name given in the recipe manually or using command line as such; <br><code>touch files/&lt;file-name&gt;.patch</code></p>
+          <p>5) Run the command: <code>bitbake &lt;recipe&gt; -c devshell</code> this will open up the quilt terminal.</p>
+          <p>6) Do "quilt top" and verify if the patch file is reflected there.<br><code># quilt top </code><a style="color:black"> patches/&lt;file-name&gt;.patch</a><br>if the patch is not reflected, you might have to use quilt pop and quilt push to get the specific patch file you want to be reflected. Run quilt series to view the stack of files, then you’ll find where your file is being stacked. To know more about quilt commands check <a class="link" href="https://raphaelhertzog.com/2012/08/08/how-to-use-quilt-to-manage-patches-in-debian-packages/", style="color:blue;">this</a> out</p>
+          <p>7) Run <code>quilt add "filename which you need to modify"</code> (If multiple files are there, then add all those) <br>eg: <a style="color:purple">quilt add configure.ac README.txt</a></p>
           <p>8) Make necessary modifications required for these files, note that these changes are being made in your vi editor.</p>
           <p>9) After the changes are being made and you’re okay with the changes, in your source folder commit the changes.</p>
-          <p>10) Do <a style="color:purple">‘quilt refresh’</a></p>
-          <p>11) Check if your modifications are reflected in the patch file.<br> <a style="color:purple">vi patches/&lt;name&gt;.patch</a></p>
+          <p>10) Do <code># quilt refresh</code></p>
+          <p>11) Check if your modifications are reflected in the patch file.<br> <code>vi patches/&lt;name&gt;.patch</code></p>
           <p>12) Then replace this patch file with original one in files folder.</p>
           <p>13) Exit, clean and build.</p>
           <p>closing thoughts - I had initially modified an existing recipe using quilt but I realized that using devtool was much more easier, in subsequent blogs I will talk about other tools used in The Yocto Project.</p>

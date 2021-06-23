@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Changing Linux Kernel Version, Ubuntu, CentOS, Debian">
+  <meta name="author" content="https://dorindabassey.github.io/changeLinuxKernel.html">
+  <meta property="og:title" content="Changing Linux Kernel Version">
+  <meta property="og:description" content="https://dorindabassey.github.io/changeLinuxKernel.html">
+
+  <title>Story Telling</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+<style>
+code {
+    overflow: auto;
+    clear: both;
+    word-wrap: normal;
+    display: block;
+    line-height: 1.5em;
+    background-color: rgba(0,0,0,.08);
+    padding: 4px;
+    border-radius: 7px;
+    margin: 0 1px;
+    color: black;
+}
+
+</style>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">My Story</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://drive.google.com/file/d/1MzNhLHY29iv1ZwIxZyeNY8rB0cZ--In_/view?usp=sharing">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Stories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/linuxkernel.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Changing Linux Kernel Version</h1>
+            <h2 class="subheading">Linux Kernel Installation Procedures</h2>
+            <span class="meta">Posted by
+              <a href="#">Dorinda Bassey</a>
+              on April 2, 2021</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>Changing Linux Kernel Version</p>
+          
+          <p>The kernel most basic functionality is resource management of the system, the kernel is the brain of your hardware. The Linux kernel optimizes the usage of the processor so that it can efficiently manage and complete tasks on your OS quickly.</p>
+          
+          <p>Checking the version of your Linux kernel using this command in the command line terminal window, provides information about the Linux Kernel version. <code>$ uname -r</code>my Linux kernel version is 5.4.0-48-generic. <br>See below the explanation of what this version numbers represents: <br><code>5 – the kernel version<br>4 – the current major revision<br>0 – the current minor revision<br>48 – the bug fixes and patches applied to this release.</code></p>
+          
+          <p>They are a many reasons to change one’s Linux Kernel version. lets say you've installed an app that would run better on a newer kernel version or you prefer an improved speed performance, then changing your kernel version is inevitable. You should keep in mind that installing a new kernel doesn't mean that the older kernel has been removed from the system.</p>
+          <p>The purpose of this post is to outline steps on how to change your kernel version on any Linux distribution. follow these steps below to successfully change your kernel version. <br>Here we will cover kernel installation for:<br>Ubuntu <br>CentOS (CentOS7 and CentOS8) <br>Debian</p>
+          <h3>Changing Kernel version for UBUNTU</h3>
+          <a href="#">
+            <img class="img-fluid" src="img/linux-kernel-ubuntu.jpg" alt="">
+          </a>
+          <p>Step1: Ensure your system is up to date by running the following command on your terminal window <code>$ sudo apt update</code>this command updates all repositories on your system.</p>
+          <p>Step2: Upgrade all the packages that are already installed by running this command <code>$ sudo apt upgrade</code></p>
+          <p>Step3: Verify the kernel version you are currently running, using the command <code>$ uname -r</code>output: <code>5.4.0-48-generic</code><br><code>$ uname -sr</code>output: <code>Linux 5.4.0-48-generic</code><br><code>$ uname -msr</code>output: <code>Linux 5.4.0-48-generic x86_64</code></p>
+          <p>Step4: Create a directory that will store the mainline kernel version you are about to download using the command <code>$ mkdir -p newVersion</code>enter the directory <code>$ cd newVersion</code></p>
+          <p>Step5: Checkout the latest kernel versions for your Ubuntu here <a class="link" href="https://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D", style="color:blue;">https://kernel.ubuntu.com/~kernel-ppa/mainline/</a> <br>while in the directory, use this command below to download a kernel version of your choice <code>~/myversion$ wget &lt;link_to_version&gt;</code></p>
+          <p>Step6: Install the downloaded package using the dpkg l command. <code>~/myversion$ dpkg -i &lt;package.deb&gt;</code></p>
+          <p>Step7: run the update-grub command and the new kernel will be successfully installed. reboot the machine and by default Ubuntu boots into the new kernel version. <code>$ update-grub</code><br><code>$ reboot</code>you can now check your kernel version with the uname command.</p>
+
+          <p>To change back to an older kernel version on your system, when the system is booting on the GRUB menu select the advanced options for Ubuntu. If the GRUB menu doesn't show use the Esc key to bring up the GRUB menu.<br>A list of all the Linux kernels installed on your system can be found there, you can select any of the older versions you want to revert to.</p>
+          <h3>Changing Kernel version for CentOS</h3>
+          <a href="#">
+            <img class="img-fluid" src="img/centoshero.jpg" alt="">
+          </a>
+          <p>Step1: update your system by running the following command on your terminal window <code>$ sudo yum -y update</code>This command updates all repositories on your system.</p>
+          <p>Step2: Verify the kernel version you are currently running, using the command below, also note that the kernel version may vary depending on what you have currently installed.<code>$ uname -r</code>output: <code>5.4.0-48-generic</code><br><code>$ uname -sr</code>output: <code>Linux 5.4.0-48-generic</code><br><code>$ uname -msr</code>output: <code>Linux 5.4.0-48-generic x86_64</code></p>
+          <p>Step3: To install the new kernel version, enable the ELRepo repository in your terminal window using the command <code>$ sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</code>Take note that – for CentOS this command installs the GPG key to verify that the software is authentic for installation.<br>Next, is to run the command that will install the repository.<br>For CentOS7 run the command <code>$ sudo rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</code>For CentOS8 run the command <code>$ sudo dnf install https://www.elrepo.org/elrepo-release-8.0-2.el8.elrepo.noarch.rpm</code></p>
+          <p>Step4: Check the list of available kernel, by entering the command:<br>For CentOS7 run the command<code>$ yum list available --disablerepo='*' --enablerepo=elrepo-kernel</code>For CentOS8 run the command<code>$ dnf repolist</code>In the kernel list, the line that says kernel-lt  indicates a stable long-term support release and kernel-ml represents a mainline release which is a short-term support that will be updated frequently.<br>You can also see the kernel version looking something like ‘4.4.193-1.el7.elrepo’, choose which kernel version you want to install.</p>
+          <p>Step5: To install the kernel package of of your choice run the command: <br>For CentOS7 run the command<code>$ sudo yum --enablerepo=elrepo-kernel install &lt;kernel-package&gt;</code>For CentOS8 run the command: <code>$ sudo dnf --enablerepo=elrepo-kernel install &lt;kernel-package&gt;</code>The system will download the software, and ask you if it’s OK to install – say yes.</p>
+          <p>Step6: Reboot your machine using the command: <code>$ reboot</code>The GRUB menu will show up, enabling you to select the kernel version you just installed, hit enter and your operating system should boot normally. If the GRUB menu doesn’t show just press the Esc key.</p>
+          <p>Step7: Check if the new kernel version is compatible with your system and is working correctly, then you can decide to set it as the default kernel version by editing the GRUB boot utility.</p>
+          <p>Step8: Set default kernel version, navigate to etc/default/ and open the grub file using the command:<code>$ sudo vim /etc/default/grub</code>go to the line that says <code>GRUB_DEFAULT=X</code> change the value “X” to any of the versions you want on the GRUB list for example <code>GRUB_DEFAULT=0</code>this enables the boot loader default to the first kernel version on the GRUB list.<br>Save the file and regenerate the kernel configurations by entering the following command: <code>$ sudo grub2-mkconfig -o "/path/to/your/grub.cfg"</code>in this case path/to/your/grub.cfg is <code>$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg</code></p>
+          <p>Step9: Reboot the machine once more and by default CentOS will boot into the new kernel version.<code>$ reboot</code>you can now check your kernel version</p>
+          <h3>Changing Kernel version for Debian</h3>
+          <a href="#">
+            <img class="img-fluid" src="img/debi.jpg" alt="">
+          </a>
+          <p>Step1: Ensure your system is up to date by running the following command on your terminal window <code>$ sudo aptitude update</code>this command updates all repositories on your system.</p>
+          <p>Step2: Verify the kernel version you are currently running, using the command below, also note that the kernel version may vary depending on what you have currently installed.<code>$ uname -r</code>output: <code>5.4.0-48-generic</code><br><code>$ uname -sr</code>output: <code>Linux 5.4.0-48-generic</code><br><code>$ uname -msr</code>output: <code>Linux 5.4.0-48-generic x86_64</code></p>
+          <p>Step3: upgrade all the packages that are already installed by running this command: <code>$ sudo aptitude upgrade</code>Search for available kernels using the command: <code>$ sudo aptitude search linux-image</code> this command will generate a list of available kernels.</p>
+          <p>Step4: choose a kernel from the list and install it using the command: <code>$ sudo aptitude install &lt;kernel-package&gt;</code></p>
+          <p>Step5: reboot your machine using the command: <code>$ reboot</code>the GRUB menu will show up, displaying a list of all the Linux kernels installed on your system, select the kernel version you just installed, hit enter and your operating system should boot normally. If the GRUB menu doesn’t show just press the Esc key.</p>
+          <p>Step6: check if the new kernel version is compatible with your system and is working correctly, then you can decide to set it as the default kernel version by editing the GRUB boot utility.</p>
+          <p>Step7: Set default kernel version, navigate to etc/default/ and open the grub file using the command:<code>$ sudo vim /etc/default/grub</code>go to the line that says <code>GRUB_DEFAULT=X</code> change the value “X” to any of the versions you want on the GRUB list for example <code>GRUB_DEFAULT=0</code>this enables the boot loader default to the first kernel version on the GRUB list.<br>Save the file and regenerate the kernel configurations by entering the following command: <code>$ sudo grub2-mkconfig -o "/path/to/your/grub.cfg"</code>in this case path/to/your/grub.cfg is <code>$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg</code></p>
+          <p>Step8: Reboot the machine once more and by default Debian will boot into the new kernel version.<code>$ reboot</code>you can now check your kernel version</p>
+
+          <!--<p>Placeholder text by
+            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
+            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>-->
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/BasseyDorinda?s=09">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/dorindabassey">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
