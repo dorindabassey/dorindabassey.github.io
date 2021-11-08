@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Changing Linux Kernel Version, Ubuntu, CentOS, Debian">
+  <meta name="author" content="https://dorindabassey.github.io/changeLinuxKernel.html">
+  <meta property="og:title" content="Changing Linux Kernel Version">
+  <meta property="og:description" content="https://dorindabassey.github.io/changeLinuxKernel.html">
+
+  <title>Story Telling</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+<style>
+code {
+    overflow: auto;
+    clear: both;
+    word-wrap: normal;
+    display: block;
+    line-height: 1.5em;
+    background-color: rgba(0,0,0,.08);
+    padding: 4px;
+    border-radius: 7px;
+    margin: 0 1px;
+    color: black;
+}
+
+</style>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Dev Story</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://drive.google.com/file/d/1MzNhLHY29iv1ZwIxZyeNY8rB0cZ--In_/view?usp=sharing">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Stories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/initd.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Init Dilemma</h1>
+            <h2 class="subheading">BusyBox Init <> systemVinit <> systemd</h2>
+            <span class="meta">Posted by
+              <a href="#">Dorinda Bassey</a>
+              on November 07, 2021</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p><h4>Init Dilemma</h4></p>
+          
+          <p>Yeah, I know the aged old fight that arises when systemVinit and systemd is at the table of any discussion. I’ve once been put in a situation where I had to make a difficult choice between which Init system was best for my embedded Linux development project.</p>
+          
+          <p>I’m going to talk about this dilemma however old this argument might be. Which I think it’s best to put it out there for anyone that might come across this and get some interesting insights. Alright, alright maybe I’m talking too much, let dig right in. </p><p>Init program is the first process responsible for managing the lifecycle of the system from boot up to shutdown. <br>Working with embedded devices, there are three Init programs that you would probably come across :-<b><br>systemVinit<br>BusyBox Init<br>systemd<br></b></p>
+          
+          <p><h4>BusyBox Init:</h4><br>For cases where you are creating your own embedded Linux image for your device, you might want to consider using BusyBox Init system as it has a very small Init program that uses a config file [/etc/inittab] to define steps to start programs at boot up and stop them at shutdown mode.<br> BusyBox makes it easy for you to write your own Init scripts, but this applies to small projects. Whereas embarking on complex projects, the Init scripts become unmaintainable. Hence it is advisable to automate the process by using open source tools like Buildroot or Yocto Project.<br>Talking about tools that automate the process; Buildroot uses BusyBox as it’s default Init program although Buildroot has options to build all three Init programs. Basically the BusyBox Init program is just a trimmed down version of systemVinit.</p>
+          <p><h4>SystemVinit:</h4><br>Compared to BusyBox Init, the boot scripts are written in a well-known modular format, making it easy to add new packages at build time or runtime. <br>SystemVinit has the concept of runlevels, which starts or stops a collection of daemons when switching from one runlevel to another. SystemVinit also start daemons in a specific order.<br>Yocto Project uses systemVinit as it’s default Init program although it has option to build with systemd.<br>Until recently systemVinit was the go to Init program for almost all server and desktop distributions including a fair number of embedded systems, I say fair number because in truth, runlevels are not used that much in embedded Linux as most devices simply boot to default runlevel and stay there.</p>
+          <p><h4>Systemd:</h4><br>Compared to systemVinit, has a faster boot time owing to the fact that many daemons services start in parallel making it easier for developers, because it’s no longer necessary to figure out the order in which the daemons should start.<br>Systemd has the concepts of runtargets, which does not necessarily stops a daemon (configurable) when switching from one runtarget to another.</p>
+          <p><b>Systemd has a lot of advantages, to list but a few:</b><br><b>- </b>using systemd it is easy to control and setup your daemon’s execution environment.<br><b>-</b>systemd provides better security features for your daemon.<br><b>- </b>writing a bullet-proof startup script is hard, as your embedded system has to detect error or crash when there’s no admin. But with systemd, it makes sure your daemon starts, runs and shutdown correctly as it provides robust startup logic with timeouts, pre-start scripts, post-start scripts, robust cleanup, post-exit scripts.<br><b>- </b>systemd provides software watchdog with a single API call to monitor your daemon, as watchdogs are a common requirement in embedded devices.<br><b>- </b>systemd enables a configurable restart upon daemon crash, including grace periods and burst protection.<br><b>- </b>systemd provides well defined dependency/ordering system, i.e you have a precise control over when or what order your daemons should start.</p>
+          <p>So in conclusion if you designing a simple system to launch very few daemons → BusyBox is sufficient, whereas for projects that involve resolving complex dependencies between services at boot time or runtime, then systemd would be the best choice.<br>However, considering storage space constraints, you might want to choose systemVinit, anyway the extra storage isn’t so much of a big deal because systemd had a lot of useful features. Be that as it may, I had no intentions to stir up heated conversations, nevertheless the comment section is an open floor. 😂️</p>
+
+          <!--<p>Placeholder text by
+            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
+            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>-->
+        </div>
+	<!--widgets, related post<div class="col-lg-2 col-md-2">col2
+	</div>-->
+
+      </div>
+    </div>
+  </article>
+<script>
+const GH_API_URL = 'https://api.github.com/repos/dorindabassey/dorindabassey.github.io/issues/6/comments?client_id=3f049503bb6a8e6a2a30&client_secret=98bc16bbf9a51ea7e52ea506f60a3859d08f703e';
+
+let request = new XMLHttpRequest();
+request.open( 'GET', GH_API_URL, true );
+request.onload = function() {
+	if ( this.status >= 200 && this.status < 400 ) {
+		let response = JSON.parse( this.response );
+
+		for ( var i = 0; i < response.length; i++ ) {
+			document.getElementById( 'gh-comments-list' ).appendChild( createCommentEl( response[ i ] ) );
+		}
+
+		if ( 0 === response.length ) {
+			document.getElementById( 'no-comments-found' ).style.display = 'block';
+		}
+	} else {
+		console.error( this );
+	}
+};
+
+function createCommentEl( response ) {
+	let user = document.createElement( 'a' );
+	user.setAttribute( 'href', response.user.url.replace( 'api.github.com/users', 'github.com' ) );
+	user.classList.add( 'user' );
+
+	let userAvatar = document.createElement( 'img' );
+	userAvatar.classList.add( 'avatar' );
+	userAvatar.setAttribute( 'src', response.user.avatar_url );
+
+	user.appendChild( userAvatar );
+
+	let commentLink = document.createElement( 'a' );
+	commentLink.setAttribute( 'href', response.html_url );
+	commentLink.classList.add( 'comment-url' );
+	commentLink.innerHTML = '#' + response.id + ' - ' + response.created_at;
+
+	let commentContents = document.createElement( 'div' );
+	commentContents.classList.add( 'comment-content' );
+	commentContents.innerHTML = response.body;
+
+	let comment = document.createElement( 'li' );
+	comment.setAttribute( 'data-created', response.created_at );
+	comment.setAttribute( 'data-author-avatar', response.user.avatar_url );
+	comment.setAttribute( 'data-user-url', response.user.url );
+
+	comment.appendChild( user );
+	comment.appendChild( commentContents );
+	comment.appendChild( commentLink );
+
+	return comment;
+}
+request.send();
+</script>
+
+<hr>
+
+<div class="github-comments">
+	<h2>Comments</h2>
+	<ul id="gh-comments-list"></ul>
+	<p id="no-comments-found">No comments found for this article.</p>
+	<p id="leave-a-comment">Join the discussion for this article on <a href="https://github.com/dorindabassey/dorindabassey.github.io/issues/16">this ticket</a>. Comments appear on this blog repo.</p>
+</div>
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/BasseyDorinda?s=09">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/dorindabassey">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
